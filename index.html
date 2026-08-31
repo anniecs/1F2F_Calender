@@ -46,20 +46,28 @@
             font-size: 26px;
         }
 
-        /* 學生切換按鈕群組 */
+        /* 功能按鈕區 */
+        .top-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
         .mode-switch {
             display: inline-flex;
             background-color: #e2ece9;
             border-radius: 20px;
             padding: 4px;
             gap: 4px;
-            margin-bottom: 10px;
         }
 
         .mode-btn {
             background: transparent;
             border: none;
-            padding: 8px 20px;
+            padding: 8px 18px;
             border-radius: 16px;
             font-size: 14px;
             font-weight: bold;
@@ -74,74 +82,114 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* 校車資訊面板 */
-        .bus-info-panel {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin: 15px 30px 0 30px;
-            box-sizing: border-box;
-        }
-
-        .bus-card {
-            background-color: #fff;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            flex-direction: column;
-            justify-content: space-between;
-            display: none; 
-        }
-
-        .bus-card-title {
-            font-size: 15px;
+        .today-btn {
+            background-color: #d35400;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 14px;
             font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: background-color 0.2s;
+        }
+
+        .today-btn:hover {
+            background-color: #b54600;
+        }
+
+        /* 彈跳視窗 (Modal) 樣式 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 90%;
+            max-width: 650px;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+            text-align: left;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 22px;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #333;
+        }
+
+        .modal-title {
             color: var(--text-dark);
-            margin-bottom: 12px;
+            font-size: 20px;
+            margin-top: 0;
+            margin-bottom: 15px;
             border-bottom: 2px solid var(--header-bg);
             padding-bottom: 8px;
         }
 
-        .bus-detail {
-            font-size: 13px;
-            color: #444;
-            margin-bottom: 8px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
+        .today-section {
+            margin-bottom: 18px;
+            background: #fafafa;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid #eee;
         }
 
-        .bus-btn {
-            display: block;
-            text-align: center;
+        .today-section h3 {
+            font-size: 15px;
+            color: #2b7a5a;
+            margin: 0 0 8px 0;
+        }
+
+        .today-section p, .today-section ul {
+            font-size: 14px;
+            color: #444;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .today-section ul {
+            padding-left: 20px;
+        }
+
+        .today-bus-btn {
+            display: inline-block;
             background-color: #2b7a5a;
             color: white;
             text-decoration: none;
-            padding: 10px 0;
-            border-radius: 6px;
-            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 13px;
             font-weight: bold;
-            margin-top: 10px;
-            transition: background-color 0.2s;
+            margin-top: 5px;
+            margin-right: 10px;
         }
 
-        .bus-btn:hover {
-            background-color: #1a4d3a;
-        }
-
-        .weekend-msg {
-            display: none;
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-            background-color: #f4f5f4;
-            color: #666;
-            border-radius: 8px;
-            font-weight: bold;
-        }
-
-        /* 星期標題與服裝整合 (平日 2 等份，假日 1 等份) */
+        /* 星期標題與服裝整合 */
         .grid-header {
             display: grid;
             grid-template-columns: repeat(5, 2fr) repeat(2, 1fr);
@@ -153,7 +201,7 @@
             font-size: 14px;
             border-top: 2px solid var(--text-dark);
             border-bottom: 2px solid var(--text-dark);
-            margin-top: 20px;
+            margin-top: 15px;
         }
 
         .grid-header > div {
@@ -193,7 +241,6 @@
             border-right: none;
         }
 
-        /* 手機版專用：每一格內的星期與服裝標題 */
         .day-header-mobile {
             display: none; 
             justify-content: space-between;
@@ -221,7 +268,6 @@
             background-color: var(--calendar-bg);
         }
 
-        /* 事項群組容器 */
         .event-group {
             display: flex;
             flex-direction: column;
@@ -235,7 +281,6 @@
             flex-wrap: wrap;
         }
 
-        /* 圓角標籤設計 */
         .tag-pill {
             border-radius: 12px;
             padding: 3px 8px;
@@ -250,26 +295,20 @@
             color: #444;
         }
 
-        /* 顏色主題 */
         .pill-school { background-color: #ffeaea; color: #d32f2f; }
         .pill-language-art { background-color: #fff0e6; color: #d35400; }
         .pill-speech { background-color: #eaf5ee; color: #1a4d3a; }
         .pill-steam { background-color: #e8f4fd; color: #0277bd; }
         .pill-brother { background-color: #e0f2f1; color: #00796b; }
 
-        /* 內容樣式 */
         .event-group p { margin: 0; font-size: 13px; color: #444; line-height: 1.4; padding-left: 2px; }
         .event-group ul { list-style-type: disc; padding-left: 18px; margin: 0; font-size: 13px; color: #444; line-height: 1.5; }
         .event-group li { margin-bottom: 2px; }
 
-        /* 控制年級內容顯示切換 */
-        .grade-1, .grade-2 { display: none; }
-        body.is-grade-1 .grade-1 { display: flex; }
-        body.is-grade-2 .grade-2 { display: flex; }
+        .grade-1-view, .grade-2-view { display: none; }
+        body.is-grade-1 .grade-1-view { display: flex; }
+        body.is-grade-2 .grade-2-view { display: flex; }
 
-        /* =========================================
-           響應式設計 (RWD)：手機螢幕小於 768px 時套用
-           ========================================= */
         @media (max-width: 768px) {
             body { padding: 10px; }
             .calendar-header h1 { font-size: 20px; }
@@ -282,47 +321,22 @@
         }
     </style>
 </head>
-<body class="is-grade-1"> <div class="calendar-container">
+<body class="is-grade-1">
+
+<div class="calendar-container">
     <div class="calendar-header">
         <h1 id="main-title">2026 年 9 月 一年義班作業與活動月曆</h1>
         
-        <div class="mode-switch">
-            <button class="mode-btn active" id="btn-grade-1" onclick="switchGrade(1)">弟弟 (一年級)</button>
-            <button class="mode-btn" id="btn-grade-2" onclick="switchGrade(2)">哥哥 (二年級)</button>
-        </div>
-
-        <div class="bus-info-panel">
-            <div id="weekend-message" class="weekend-msg">🛌 週末愉快！今日無校車接送安排。</div>
-
-            <div id="bus-morning" class="bus-card">
-                <div class="bus-card-title">🌅 今日上學接送</div>
-                <div class="bus-detail">⏰ <strong>時間：</strong>07:21</div>
-                <div class="bus-detail">📍 <strong>地點：</strong>榮富公園, 1610</div>
-                <div class="bus-detail">🚌 <strong>車號：</strong>20-2號車</div>
-                <div class="bus-detail">📞 <strong>聯絡：</strong>賴老師 (0933-875072)</div>
-                <a href="https://notification.theomnieyes.com/location/map/PAA-123-20" target="_blank" class="bus-btn">📍 查看上學校車動態</a>
+        <div class="top-controls">
+            <div class="mode-switch">
+                <button class="mode-btn active" id="btn-grade-1" onclick="switchGrade(1)">弟弟 (一年級)</button>
+                <button class="mode-btn" id="btn-grade-2" onclick="switchGrade(2)">哥哥 (二年級)</button>
             </div>
-            
-            <div id="bus-regular" class="bus-card">
-                <div class="bus-card-title">🌇 今日放學接送 (安親班)</div>
-                <div class="bus-detail">⏰ <strong>時間：</strong>18:12</div>
-                <div class="bus-detail">📍 <strong>地點：</strong>7-11 商城門市, 2386</div>
-                <div class="bus-detail">🚌 <strong>車號：</strong>51-2號車</div>
-                <div class="bus-detail">📞 <strong>聯絡：</strong>曾老師 (0960-775249)</div>
-                <a href="https://notification.theomnieyes.com/location/map/WEGO-051" target="_blank" class="bus-btn">📍 查看放學校車動態</a>
-            </div>
-
-            <div id="bus-wednesday" class="bus-card">
-                <div class="bus-card-title">🏕️ 今日放學接送 (學藝營)</div>
-                <div class="bus-detail">⏰ <strong>時間：</strong>15:49</div>
-                <div class="bus-detail">📍 <strong>地點：</strong>恩美瑞美語, 2986</div>
-                <div class="bus-detail">🚌 <strong>車號：</strong>22-1號車</div>
-                <div class="bus-detail">📞 <strong>聯絡：</strong>許老師 (0939-222043)</div>
-                <a href="https://notification.theomnieyes.com/location/map/KJA-0062-22" target="_blank" class="bus-btn">📍 查看放學校車動態</a>
-            </div>
+            <button class="today-btn" onclick="openTodayModal()">📅 只看今天</button>
         </div>
     </div>
 
+    <!-- 星期與服裝標題列 -->
     <div class="grid-header">
         <div>週一<div class="header-uniform" id="head-mon">運動服</div></div>
         <div>週二<div class="header-uniform" id="head-tue">運動服</div></div>
@@ -334,324 +348,190 @@
     </div>
 
     <div class="grid-body">
+        <!-- 第 1 週 -->
         <div class="day-cell">
-            <div class="day-header-mobile">週一 <span class="mobile-uniform" id="mob-mon">運動服</span></div>
+            <div class="day-header-mobile">週一 <span class="mobile-uniform">運動服</span></div>
             <div class="day-date">8/31</div>
-            <div class="event-group cat-brother grade-1">
+            <div class="event-group grade-1-view">
                 <div class="tag-header"><span class="tag-pill pill-brother">弟弟聯絡本</span></div>
-                <ul>
-                    <li>國語課本/注音簿包書套(補至P18)</li>
-                    <li>LA看雲端複習，明天帶文化課袋</li>
-                    <li>發下帳號密碼、日課表、作息表等</li>
-                    <li>萬花筒甲乙本放家裡練習</li>
-                    <li>帶親子共讀手冊 + 一把尺</li>
-                    <li>聯絡簿簽名、寫防災卡</li>
-                </ul>
+                <ul><li>國語課本/注音簿包書套(補至P18)</li><li>LA看雲端複習，明天帶文化課袋</li><li>發下帳號密碼、日課表等</li></ul>
             </div>
-            <div class="event-group cat-brother grade-2">
-                <div class="tag-header"><span class="tag-pill pill-brother">哥哥聯絡本</span></div>
-                <ul>
-                    <li>預習國語第一課(完成預習單)</li>
-                    <li>複習暑假經典：大學、千字文(二)</li>
-                    <li>聯絡簿、國語課本和習作包書套</li>
-                    <li>交暑假作業；學用品帶齊標姓名</li>
-                </ul>
-            </div>
-            <div class="event-group cat-language-art grade-1">
+            <div class="event-group grade-1-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
                 <ul><li>Preview unit 1.</li></ul>
             </div>
-            <div class="event-group cat-language-art grade-2">
+            <div class="event-group grade-2-view">
+                <div class="tag-header"><span class="tag-pill pill-brother">哥哥聯絡本</span></div>
+                <ul><li>預習國語第一課(完成預習單)</li><li>複習暑假經典：大學、千字文(二)</li></ul>
+            </div>
+            <div class="event-group grade-2-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul>
-                    <li>TB 2-3</li>
-                    <li>Video Worksheet</li>
-                </ul>
+                <ul><li>TB 2-3 / Video Worksheet</li></ul>
             </div>
         </div>
         
         <div class="day-cell">
-            <div class="day-header-mobile">週二 <span class="mobile-uniform" id="mob-tue">運動服</span></div>
+            <div class="day-header-mobile">週二 <span class="mobile-uniform">運動服</span></div>
             <div class="day-date">1</div>
-            <div class="event-group cat-language-art grade-1">
+            <div class="event-group grade-1-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
                 <ul><li>Review p. 2-3 and preview vocabulary p. 4, 7.</li></ul>
             </div>
-            <div class="event-group cat-language-art grade-2">
+            <div class="event-group grade-2-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul>
-                    <li>TB 4-5</li>
-                    <li>Describe 2 jobs not mentioned in the book.</li>
-                </ul>
+                <ul><li>TB 4-5 / Describe 2 jobs not mentioned.</li></ul>
             </div>
-            <div class="event-group cat-steam grade-2">
+            <div class="event-group grade-2-view">
                 <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">U1 Lesson 1</span></div>
-                <ul>
-                    <li>What Is a Design Process?</li>
-                    <li>Step 1~Step 5 / Lesson Check</li>
-                </ul>
+                <ul><li>What Is a Design Process? / Step 1~5</li></ul>
             </div>
         </div>
         
         <div class="day-cell">
-            <div class="day-header-mobile">週三 <span class="mobile-uniform" id="mob-wed">便服</span></div>
+            <div class="day-header-mobile">週三 <span class="mobile-uniform">便服</span></div>
             <div class="day-date">2</div>
-            <div class="event-group cat-school">
+            <div class="event-group">
                 <div class="tag-header"><span class="tag-pill pill-school">全校</span></div>
                 <p>課後學藝營及多元分組課程開始上課</p>
             </div>
-            <div class="event-group cat-language-art grade-1">
+            <div class="event-group grade-1-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
                 <ul><li>Review p. 4-5, read and spell out loud.</li></ul>
             </div>
-            <div class="event-group cat-language-art grade-2">
+            <div class="event-group grade-2-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul>
-                    <li>TB 6-7 Memorize keywords and use in a sentence.</li>
-                </ul>
+                <ul><li>TB 6-7 Memorize keywords and use in a sentence.</li></ul>
             </div>
         </div>
         
         <div class="day-cell">
-            <div class="day-header-mobile">週四 <span class="mobile-uniform" id="mob-thu">制服</span></div>
+            <div class="day-header-mobile">週四 <span class="mobile-uniform">制服</span></div>
             <div class="day-date">3</div>
-            <div class="event-group cat-language-art grade-1">
+            <div class="event-group grade-1-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
                 <ul><li>Read vocabulary sentences on p. 6-7.</li></ul>
             </div>
-            <div class="event-group cat-language-art grade-2">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul>
-                    <li>TB 8-9 / Preview and predict worksheet</li>
-                </ul>
-            </div>
-            <div class="event-group cat-steam grade-1">
+            <div class="event-group grade-1-view">
                 <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">Unit1. Lesson 1</span></div>
                 <ul><li>Read tutorial and try online platform</li></ul>
+            </div>
+            <div class="event-group grade-2-view">
+                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
+                <ul><li>TB 8-9 / Preview and predict worksheet</li></ul>
             </div>
         </div>
         
         <div class="day-cell">
-            <div class="day-header-mobile">週五 <span class="mobile-uniform" id="mob-fri">運動服/便服</span></div>
+            <div class="day-header-mobile">週五 <span class="mobile-uniform">便服</span></div>
             <div class="day-date">4</div>
-            <div class="event-group cat-language-art grade-1">
+            <div class="event-group grade-1-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul>
-                    <li>Read phonics on p. 8-9. / Scholastic reading.</li>
-                </ul>
+                <ul><li>Read phonics on p. 8-9. / Scholastic reading.</li></ul>
             </div>
-            <div class="event-group cat-language-art grade-2">
+            <div class="event-group grade-2-view">
                 <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul>
-                    <li>TB 10-11 / Make words with scr and str / Scholastic Reader</li>
-                </ul>
+                <ul><li>TB 10-11 / Make words with scr and str</li></ul>
             </div>
         </div>
         
         <div class="day-cell"><div class="day-header-mobile">週六</div><div class="day-date">5</div></div>
         <div class="day-cell"><div class="day-header-mobile">週日</div><div class="day-date">6</div></div>
 
-        <div class="day-cell">
-            <div class="day-header-mobile">週一</div><div class="day-date">7</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Read p. 10-23 out loud, study vocabulary. (2F: No class)</li></ul>
-            </div>
+        <!-- 第 2 週 -->
+        <div class="day-cell"><div class="day-header-mobile">週一</div><div class="day-date">7</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Read p. 10-23 out loud.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>No class</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週二</div><div class="day-date">8</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review p. 10-25. (2F: TB 12-25 grandparents activity)</li></ul>
-            </div>
-            <div class="event-group cat-steam grade-2">
-                <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">U1 Lesson 2</span></div>
-                <ul><li>Compare Design Solutions / Build & Test</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週二</div><div class="day-date">8</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 10-25.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 12-25 / Grandparents activity</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>U1 Lesson 2: Compare Design Solutions</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週三</div><div class="day-date">9</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review grammar & vocabulary. (2F: TB 26-27 neighborhood)</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週三</div><div class="day-date">9</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review grammar & vocabulary.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 26-27 / Neighborhood activities</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週四</div><div class="day-date">10</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review & Vocabulary Quiz. (2F: TB 28-31 jobs)</li></ul>
-            </div>
-            <div class="event-group cat-steam grade-1">
-                <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">Engineers Use Tech?</span></div>
-                <ul><li>Engineer It / What is an Engineer?</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週四</div><div class="day-date">10</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review & Vocabulary Quiz.</li></ul></div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>How Do Engineers Use Technology?</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 28-31 / World jobs</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週五</div><div class="day-date">11</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Plural nouns & Scholastic Reading. (2F: TB 32-33 spelling quiz prep)</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週五</div><div class="day-date">11</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Plural nouns & Scholastic Reading.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 32-33 / Spelling quiz prep</li></ul></div>
         </div>
-        
         <div class="day-cell"><div class="day-header-mobile">週六</div><div class="day-date">12</div></div>
         <div class="day-cell"><div class="day-header-mobile">週日</div><div class="day-date">13</div></div>
 
-        <div class="day-cell">
-            <div class="day-header-mobile">週一</div><div class="day-date">14</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review p. 34-35. (2F: Plural nouns worksheet)</li></ul>
-            </div>
+        <!-- 第 3 週 -->
+        <div class="day-cell"><div class="day-header-mobile">週一</div><div class="day-date">14</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 34-35.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Plural nouns worksheet</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週二</div><div class="day-date">15</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>No homework / TB 34-35</li></ul>
-            </div>
-            <div class="event-group cat-steam grade-2">
-                <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">U1 Lesson 2</span></div>
-                <ul><li>Take It Further / Lesson Check / Unit Review</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週二</div><div class="day-date">15</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>No homework</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 34-35</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>U1 Lesson 2 Take It Further</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週三</div><div class="day-date">16</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review p 36-37 out loud.</li></ul>
-            </div>
-            <div class="event-group cat-speech">
-                <div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span><span class="sub-title">中文第 1 次</span></div>
-                <p>第一組</p>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週三</div><div class="day-date">16</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p 36-37 out loud.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 36-37 / Main idea</li></ul></div>
+            <div class="event-group"><div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span></div><p>中文第 1 次</p></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週四</div><div class="day-date">17</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Phonics & Read out loud. (2F: TB 38-41)</li></ul>
-            </div>
-            <div class="event-group cat-steam grade-1">
-                <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">Scavenger Hunt</span></div>
-                <ul><li>Take It Further / Lesson Check</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週四</div><div class="day-date">17</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Phonics & Read.</li></ul></div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>Scavenger Hunt</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 38-41 / Monitor & clarify</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週五</div><div class="day-date">18</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review p. 40-57 & Scholastic Reading. (2F: TB 42-55 photo essay)</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週五</div><div class="day-date">18</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 40-57 & Scholastic Reading.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 42-55 / Photo Essay</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週六</div>
-            <div class="day-date">19</div>
-            <div class="event-group cat-school">
-                <div class="tag-header"><span class="tag-pill pill-school">全校</span></div>
-                <p>學校日 (上午)</p>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週六</div><div class="day-date">19</div>
+            <div class="event-group"><div class="tag-header"><span class="tag-pill pill-school">全校</span></div><p>學校日 (上午)</p></div>
         </div>
-        
         <div class="day-cell"><div class="day-header-mobile">週日</div><div class="day-date">20</div></div>
 
-        <div class="day-cell">
-            <div class="day-header-mobile">週一</div><div class="day-date">21</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review and read p. 58-59. (2F: TB 56-57)</li></ul>
-            </div>
+        <!-- 第 4 週 -->
+        <div class="day-cell"><div class="day-header-mobile">週一</div><div class="day-date">21</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 58-59.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 56-57 / Main ideas worksheet</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週二</div><div class="day-date">22</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Study grammar. (2F: TB 58-61 favorite place)</li></ul>
-            </div>
-            <div class="event-group cat-steam grade-2">
-                <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">U2 Lesson 1</span></div>
-                <ul><li>Properties of Matter / Solids & Liquids</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週二</div><div class="day-date">22</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Study grammar.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 58-61 / Favorite place</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>U2 Lesson 1: Properties of Matter</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週三</div><div class="day-date">23</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Read p. 61-64 & Quiz tomorrow.</li></ul>
-            </div>
-            <div class="event-group cat-speech">
-                <div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span><span class="sub-title">英文第 1 次</span></div>
-                <p>第四組</p>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週三</div><div class="day-date">23</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Read p. 61-64 & Quiz tomorrow.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 62-63 / Spelling quiz prep</li></ul></div>
+            <div class="event-group"><div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span></div><p>英文第 1 次</p></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週四</div><div class="day-date">24</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Grammar & Reading worksheet. (2F: Webcast prep)</li></ul>
-            </div>
-            <div class="event-group cat-steam grade-1">
-                <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">Solve a Problem?</span></div>
-                <ul><li>Step 1-5</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週四</div><div class="day-date">24</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Grammar & Reading.</li></ul></div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>Solve a Problem? Step 1-5</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Webcast prep</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週五</div><div class="day-date">25</div>
-            <div class="event-group cat-school">
-                <div class="tag-header"><span class="tag-pill pill-school">全校</span></div>
-                <p>中秋節放假</p>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週五</div><div class="day-date">25</div>
+            <div class="event-group"><div class="tag-header"><span class="tag-pill pill-school">全校</span></div><p>中秋節放假</p></div>
         </div>
-        
         <div class="day-cell"><div class="day-header-mobile">週六</div><div class="day-date">26</div></div>
         <div class="day-cell"><div class="day-header-mobile">週日</div><div class="day-date">27</div></div>
 
-        <div class="day-cell">
-            <div class="day-header-mobile">週一</div><div class="day-date">28</div>
-            <div class="event-group cat-school">
-                <div class="tag-header"><span class="tag-pill pill-school">全校</span></div>
-                <p>教師節放假</p>
-            </div>
+        <!-- 第 5 週 (完整 30 天) -->
+        <div class="day-cell"><div class="day-header-mobile">週一</div><div class="day-date">28</div>
+            <div class="event-group"><div class="tag-header"><span class="tag-pill pill-school">全校</span></div><p>教師節放假</p></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週二</div><div class="day-date">29</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review Unit 1. (2F: Review for Unit 1 quiz)</li></ul>
-            </div>
-            <div class="event-group cat-steam grade-2">
-                <div class="tag-header"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">U2 Lesson 1&2</span></div>
-                <ul><li>How Are Objects Put Together? / Lesson Check</li></ul>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週二</div><div class="day-date">29</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review Unit 1.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review for Unit 1 quiz</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>U2 Lesson 1&2: Objects Put Together</li></ul></div>
         </div>
-        
-        <div class="day-cell">
-            <div class="day-header-mobile">週三</div><div class="day-date">30</div>
-            <div class="event-group cat-language-art">
-                <div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div>
-                <ul><li>Review for Unit 1 quiz. (2F: Preview Unit 2 vocabulary)</li></ul>
-            </div>
-            <div class="event-group cat-speech">
-                <div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span><span class="sub-title">中文第 2 次</span></div>
-                <p>第六組</p>
-            </div>
+        <div class="day-cell"><div class="day-header-mobile">週三</div><div class="day-date">30</div>
+            <div class="event-group grade-1-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review for Unit 1 quiz.</li></ul></div>
+            <div class="event-group grade-2-view"><div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Preview Unit 2 vocabulary</li></ul></div>
+            <div class="event-group"><div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span></div><p>中文第 2 次</p></div>
         </div>
-        
         <div class="day-cell empty-day"></div>
         <div class="day-cell empty-day"></div>
         <div class="day-cell empty-day"></div>
@@ -659,8 +539,131 @@
     </div>
 </div>
 
+<!-- 彈跳視窗：只看今天 -->
+<div class="modal-overlay" id="today-modal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeTodayModal()">&times;</button>
+        <h2 class="modal-title" id="modal-date-title">今日行程與資訊</h2>
+        
+        <div class="today-section">
+            <h3>🚌 校車接送資訊</h3>
+            <div id="modal-bus-info">載入中...</div>
+        </div>
+
+        <div class="today-section">
+            <h3>👕 今日服裝規定</h3>
+            <div id="modal-uniform-info">載入中...</div>
+        </div>
+
+        <div class="today-section">
+            <h3>📝 兩兄弟今日行事曆與作業</h3>
+            <div id="modal-events-info">載入中...</div>
+        </div>
+    </div>
+</div>
+
 <script>
-    // 切換年級功能 (1 = 弟弟/一年級, 2 = 哥哥/二年級)
+    // 獨立資料庫：將 9 月份兩兄弟的每日作業直接寫在程式碼中，確保隨時都能抓到雙胞資料
+    const database = {
+        "2026-08-31": {
+            grade1: '<ul><li>國語課本/注音簿包書套(補至P18)</li><li>LA看雲端複習，明天帶文化課袋</li><li>發下帳號密碼、日課表等</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Preview unit 1.</li></ul>',
+            grade2: '<ul><li>預習國語第一課(完成預習單)</li><li>複習暑假經典：大學、千字文(二)</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 2-3 / Video Worksheet</li></ul>'
+        },
+        "2026-09-01": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 2-3 and preview vocabulary p. 4, 7.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 4-5 / Describe 2 jobs not mentioned.</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">U1 Lesson 1</span></div><ul><li>What Is a Design Process? / Step 1~5</li></ul>'
+        },
+        "2026-09-02": {
+            shared: '<div class="tag-header"><span class="tag-pill pill-school">全校</span></div><p>課後學藝營及多元分組課程開始上課</p>',
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 4-5, read and spell out loud.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 6-7 Memorize keywords and use in a sentence.</li></ul>'
+        },
+        "2026-09-03": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Read vocabulary sentences on p. 6-7.</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span><span class="sub-title">Unit1. Lesson 1</span></div><ul><li>Read tutorial and try online platform</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 8-9 / Preview and predict worksheet</li></ul>'
+        },
+        "2026-09-04": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Read phonics on p. 8-9. / Scholastic reading.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 10-11 / Make words with scr and str</li></ul>'
+        },
+        "2026-09-07": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Read p. 10-23 out loud.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>No class</li></ul>'
+        },
+        "2026-09-08": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 10-25.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 12-25 / Grandparents activity</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>U1 Lesson 2: Compare Design Solutions</li></ul>'
+        },
+        "2026-09-09": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review grammar & vocabulary.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 26-27 / Neighborhood activities</li></ul>'
+        },
+        "2026-09-10": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review & Vocabulary Quiz.</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>How Do Engineers Use Technology?</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 28-31 / World jobs</li></ul>'
+        },
+        "2026-09-11": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Plural nouns & Scholastic Reading.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 32-33 / Spelling quiz prep</li></ul>'
+        },
+        "2026-09-14": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 34-35.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Plural nouns worksheet</li></ul>'
+        },
+        "2026-09-15": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>No homework</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 34-35</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>U1 Lesson 2 Take It Further</li></ul>'
+        },
+        "2026-09-16": {
+            shared: '<div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span></div><p>中文第 1 次</p>',
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p 36-37 out loud.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 36-37 / Main idea</li></ul>'
+        },
+        "2026-09-17": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Phonics & Read.</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>Scavenger Hunt</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 38-41 / Monitor & clarify</li></ul>'
+        },
+        "2026-09-18": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 40-57 & Scholastic Reading.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 42-55 / Photo Essay</li></ul>'
+        },
+        "2026-09-19": {
+            shared: '<div class="tag-header"><span class="tag-pill pill-school">全校</span></div><p>學校日 (上午)</p>'
+        },
+        "2026-09-21": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review p. 58-59.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 56-57 / Main ideas worksheet</li></ul>'
+        },
+        "2026-09-22": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Study grammar.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 58-61 / Favorite place</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>U2 Lesson 1: Properties of Matter</li></ul>'
+        },
+        "2026-09-23": {
+            shared: '<div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span></div><p>英文第 1 次</p>',
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Read p. 61-64 & Quiz tomorrow.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>TB 62-63 / Spelling quiz prep</li></ul>'
+        },
+        "2026-09-24": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Grammar & Reading.</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>Solve a Problem? Step 1-5</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Webcast prep</li></ul>'
+        },
+        "2026-09-25": {
+            shared: '<div class="tag-header"><span class="tag-pill pill-school">全校</span></div><p>中秋節放假</p>'
+        },
+        "2026-09-28": {
+            shared: '<div class="tag-header"><span class="tag-pill pill-school">全校</span></div><p>教師節放假</p>'
+        },
+        "2026-09-29": {
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review Unit 1.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review for Unit 1 quiz</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-steam">STEAM</span></div><ul><li>U2 Lesson 1&2: Objects Put Together</li></ul>'
+        },
+        "2026-09-30": {
+            shared: '<div class="tag-header"><span class="tag-pill pill-speech">晨間演講</span></div><p>中文第 2 次</p>',
+            grade1: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Review for Unit 1 quiz.</li></ul>',
+            grade2: '<div class="tag-header"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Preview Unit 2 vocabulary</li></ul>'
+        }
+    };
+
     function switchGrade(grade) {
         const btn1 = document.getElementById('btn-grade-1');
         const btn2 = document.getElementById('btn-grade-2');
@@ -672,56 +675,108 @@
         const headThu = document.getElementById('head-thu');
         const headFri = document.getElementById('head-fri');
 
-        const mobMon = document.getElementById('mob-mon');
-        const mobTue = document.getElementById('mob-tue');
-        const mobWed = document.getElementById('mob-wed');
-        const mobThu = document.getElementById('mob-thu');
-        const mobFri = document.getElementById('mob-fri');
-
         if (grade === 1) {
             document.body.className = 'is-grade-1';
             btn1.className = 'mode-btn active';
             btn2.className = 'mode-btn';
             mainTitle.textContent = '2026 年 9 月 一年義班作業與活動月曆';
-            
-            // 弟弟服裝：一二運動服、四制服
-            headMon.textContent = '運動服';
-            headTue.textContent = '運動服';
-            headWed.textContent = '';
-            headThu.textContent = '制服';
-            headFri.textContent = '';
-
-            mobMon.textContent = '運動服';
-            mobTue.textContent = '運動服';
-            mobWed.textContent = '';
-            mobThu.textContent = '制服';
-            mobFri.textContent = '';
+            headMon.textContent = '運動服'; headTue.textContent = '運動服'; headWed.textContent = '便服'; headThu.textContent = '制服'; headFri.textContent = '便服';
         } else {
             document.body.className = 'is-grade-2';
             btn1.className = 'mode-btn';
             btn2.className = 'mode-btn active';
             mainTitle.textContent = '2026 年 9 月 二年級作業與活動月曆';
-            
-            // 哥哥服裝：一五體服、二三便服、四制服
-            headMon.textContent = '體服';
-            headTue.textContent = '便服';
-            headWed.textContent = '便服';
-            headThu.textContent = '制服';
-            headFri.textContent = '體服';
-
-            mobMon.textContent = '體服';
-            mobTue.textContent = '便服';
-            mobWed.textContent = '便服';
-            mobThu.textContent = '制服';
-            mobFri.textContent = '體服';
+            headMon.textContent = '體服'; headTue.textContent = '便服'; headWed.textContent = '便服'; headThu.textContent = '制服'; headFri.textContent = '體服';
         }
     }
 
-    // 校車動態顯示邏輯 (依據星期幾)
+    function openTodayModal() {
+        const modal = document.getElementById('today-modal');
+        const titleEl = document.getElementById('modal-date-title');
+        const busEl = document.getElementById('modal-bus-info');
+        const uniformEl = document.getElementById('modal-uniform-info');
+        const eventsEl = document.getElementById('modal-events-info');
+
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = today.getMonth() + 1;
+        const day = today.getDate();
+        const dayOfWeek = today.getDay();
+
+        titleEl.textContent = `📅 今日行程與資訊 (${month}月${day}日)`;
+
+        // 1. 校車
+        if (dayOfWeek === 0 || dayOfWeek === 6) {
+            busEl.innerHTML = `<p>🛌 今天是週末，無校車接送安排。</p>`;
+        } else if (dayOfWeek === 3) {
+            busEl.innerHTML = `
+                <p><strong>🌅 上學：</strong>07:21 榮富公園 (20-2號車 / 賴老師 0933-875072)</p>
+                <a href="https://notification.theomnieyes.com/location/map/PAA-123-20" target="_blank" class="today-bus-btn">📍 上學校車動態</a>
+                <p style="margin-top:8px;"><strong>🏕️ 週三放學(學藝營)：</strong>15:49 恩美瑞美語 (22-1號車 / 許老師 0939-222043)</p>
+                <a href="https://notification.theomnieyes.com/location/map/KJA-0062-22" target="_blank" class="today-bus-btn">📍 週三放學校車動態</a>
+            `;
+        } else {
+            busEl.innerHTML = `
+                <p><strong>🌅 上學：</strong>07:21 榮富公園 (20-2號車 / 賴老師 0933-875072)</p>
+                <a href="https://notification.theomnieyes.com/location/map/PAA-123-20" target="_blank" class="today-bus-btn">📍 上學校車動態</a>
+                <p style="margin-top:8px;"><strong>🌇 一般放學(安親班)：</strong>18:12 7-11商城門市 (51-2號車 / 曾老師 0960-775249)</p>
+                <a href="https://notification.theomnieyes.com/location/map/WEGO-051" target="_blank" class="today-bus-btn">📍 放學校車動態</a>
+            `;
+        }
+
+        // 2. 服裝
+        let g1Uniform = '便服', g2Uniform = '便服';
+        if (dayOfWeek === 1) { g1Uniform = '運動服'; g2Uniform = '體服'; }
+        else if (dayOfWeek === 2) { g1Uniform = '運動服'; g2Uniform = '便服'; }
+        else if (dayOfWeek === 3) { g1Uniform = '便服'; g2Uniform = '便服'; }
+        else if (dayOfWeek === 4) { g1Uniform = '制服'; g2Uniform = '制服'; }
+        else if (dayOfWeek === 5) { g1Uniform = '便服'; g2Uniform = '體服'; }
+        else { g1Uniform = '假日便服'; g2Uniform = '假日便服'; }
+
+        uniformEl.innerHTML = `
+            <p><strong>弟弟 (一年級)：</strong>${g1Uniform}</p>
+            <p><strong>哥哥 (二年級)：</strong>${g2Uniform}</p>
+        `;
+
+        // 3. 從獨立資料庫直接抓取兩兄弟今日作業與共用活動
+        const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const dayData = database[dateStr];
+        
+        if (dayData) {
+            const sharedHtml = dayData.shared || '';
+            const g1Html = (dayData.grade1 || '') + (sharedHtml ? '<div style="margin-top:4px;">' + sharedHtml + '</div>' : '');
+            const g2Html = (dayData.grade2 || '') + (sharedHtml ? '<div style="margin-top:4px;">' + sharedHtml + '</div>' : '');
+
+            eventsEl.innerHTML = `
+                <div style="margin-bottom:12px;">
+                    <strong style="color:#00796b;">👶 弟弟 (一年級)：</strong>
+                    <div style="margin-top:4px;">${g1Html.trim() !== '' ? g1Html : '<p style="margin:0; font-size:13px; color:#444;">今日無特別作業</p>'}</div>
+                </div>
+                <hr style="border:0; border-top:1px dashed #ccc; margin:10px 0;">
+                <div>
+                    <strong style="color:#1a4d3a;">👦 哥哥 (二年級)：</strong>
+                    <div style="margin-top:4px;">${g2Html.trim() !== '' ? g2Html : '<p style="margin:0; font-size:13px; color:#444;">今日無特別作業</p>'}</div>
+                </div>
+            `;
+        } else {
+            eventsEl.innerHTML = `<p>今日無 9 月對應的行程資料，或為週末假期。</p>`;
+        }
+
+        modal.style.display = 'flex';
+    }
+
+    function closeTodayModal() {
+        document.getElementById('today-modal').style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('today-modal');
+        if (event.target === modal) modal.style.display = 'none';
+    }
+
     function setupBusInfo() {
         const today = new Date();
-        const dayOfWeek = today.getDay(); // 0 = 週日, 1 = 週一, 2 = 週二, 3 = 週三, 4 = 週四, 5 = 週五, 6 = 週六
-        
+        const dayOfWeek = today.getDay();
         const busMorning = document.getElementById('bus-morning');
         const busRegular = document.getElementById('bus-regular');
         const busWednesday = document.getElementById('bus-wednesday');
