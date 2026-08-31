@@ -99,6 +99,75 @@
             background-color: #b54600;
         }
 
+        /* 校車資訊面板 */
+        .bus-info-panel {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin: 15px 0 0 0;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: left;
+        }
+
+        .bus-card {
+            background-color: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            flex-direction: column;
+            justify-content: space-between;
+            display: none; 
+        }
+
+        .bus-card-title {
+            font-size: 15px;
+            font-weight: bold;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+            border-bottom: 2px solid var(--header-bg);
+            padding-bottom: 8px;
+        }
+
+        .bus-detail {
+            font-size: 13px;
+            color: #444;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .bus-btn {
+            display: block;
+            text-align: center;
+            background-color: #2b7a5a;
+            color: white;
+            text-decoration: none;
+            padding: 10px 0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: background-color 0.2s;
+        }
+
+        .bus-btn:hover {
+            background-color: #1a4d3a;
+        }
+
+        .weekend-msg {
+            display: none;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: #f4f5f4;
+            color: #666;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
         /* 彈跳視窗 (Modal) 樣式 */
         .modal-overlay {
             display: none;
@@ -317,7 +386,6 @@
             .day-cell { border-right: none; border-bottom: 3px solid var(--header-bg); padding: 15px; }
             .empty-day { display: none; }
             .day-header-mobile { display: flex; }
-            .bus-info-panel { margin: 15px 10px 0 10px; }
         }
     </style>
 </head>
@@ -333,6 +401,41 @@
                 <button class="mode-btn" id="btn-grade-2" onclick="switchGrade(2)">哥哥 (二年級)</button>
             </div>
             <button class="today-btn" onclick="openTodayModal()">📅 只看今天</button>
+        </div>
+
+        <!-- 動態校車資訊區塊 -->
+        <div class="bus-info-panel">
+            <div id="weekend-message" class="weekend-msg">🛌 週末愉快！今日無校車接送安排。</div>
+
+            <!-- 上學 -->
+            <div id="bus-morning" class="bus-card">
+                <div class="bus-card-title">🌅 今日上學接送</div>
+                <div class="bus-detail">⏰ <strong>時間：</strong>07:21</div>
+                <div class="bus-detail">📍 <strong>地點：</strong>榮富公園, 1610</div>
+                <div class="bus-detail">🚌 <strong>車號：</strong>20-2號車</div>
+                <div class="bus-detail">📞 <strong>聯絡：</strong>賴老師 (0933-875072)</div>
+                <a href="https://notification.theomnieyes.com/location/map/PAA-123-20" target="_blank" class="bus-btn">📍 查看上學校車動態</a>
+            </div>
+            
+            <!-- 一般放學 -->
+            <div id="bus-regular" class="bus-card">
+                <div class="bus-card-title">🌇 今日放學接送 (安親班)</div>
+                <div class="bus-detail">⏰ <strong>時間：</strong>18:12</div>
+                <div class="bus-detail">📍 <strong>地點：</strong>7-11 商城門市, 2386</div>
+                <div class="bus-detail">🚌 <strong>車號：</strong>51-2號車</div>
+                <div class="bus-detail">📞 <strong>聯絡：</strong>曾老師 (0960-775249)</div>
+                <a href="https://notification.theomnieyes.com/location/map/WEGO-051" target="_blank" class="bus-btn">📍 查看放學校車動態</a>
+            </div>
+
+            <!-- 週三放學 -->
+            <div id="bus-wednesday" class="bus-card">
+                <div class="bus-card-title">🏕️ 今日放學接送 (學藝營)</div>
+                <div class="bus-detail">⏰ <strong>時間：</strong>15:49</div>
+                <div class="bus-detail">📍 <strong>地點：</strong>恩美瑞美語, 2986</div>
+                <div class="bus-detail">🚌 <strong>車號：</strong>22-1號車</div>
+                <div class="bus-detail">📞 <strong>聯絡：</strong>許老師 (0939-222043)</div>
+                <a href="https://notification.theomnieyes.com/location/map/KJA-0062-22" target="_blank" class="bus-btn">📍 查看放學校車動態</a>
+            </div>
         </div>
     </div>
 
@@ -563,7 +666,7 @@
 </div>
 
 <script>
-    // 獨立資料庫：將 9 月份兩兄弟的每日作業直接寫在程式碼中，確保隨時都能抓到雙胞資料
+    // 獨立資料庫：確保「只看今天」隨時都能直接抓出兩兄弟當天的所有資料
     const database = {
         "2026-08-31": {
             grade1: '<ul><li>國語課本/注音簿包書套(補至P18)</li><li>LA看雲端複習，明天帶文化課袋</li><li>發下帳號密碼、日課表等</li></ul><div class="tag-header" style="margin-top:4px;"><span class="tag-pill pill-language-art">Language Art</span></div><ul><li>Preview unit 1.</li></ul>',
